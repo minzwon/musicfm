@@ -17,14 +17,15 @@ from model.musicfm_25hz import MusicFM25Hz
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
 
 # load MusicFM
-model = MusicFM25Hz()
+musicfm = MusicFM25Hz()
 
 # to GPUs
 wav = wav.cuda()
-model = model.cuda()
+musicfm = musicfm.cuda()
 
 # get embeddings
-emb = model.get_latent(wav, layer_ix=6)
+musicfm.eval()
+emb = musicfm.get_latent(wav, layer_ix=6)
 ```
 
 ## Mixed precision and Flash attention
@@ -36,14 +37,15 @@ from model.musicfm_25hz import MusicFM25Hz
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
 
 # load MusicFM
-model = MusicFM25Hz(is_flash=True)
+musicfm = MusicFM25Hz(is_flash=True)
 
 # to GPUs
 wav = wav.cuda().half()
-model = model.cuda().half()
+musicfm = musicfm.cuda().half()
 
 # get embeddings
-emb = model.get_latent(wav, layer_ix=6)
+musicfm.eval()
+emb = musicfm.get_latent(wav, layer_ix=6)
 ```
 
 ## Citation
