@@ -12,12 +12,18 @@ wget -P data/ https://huggingface.co/minzwon/MusicFM/resolve/main/musicfm_25hz_F
 ```
 import torch
 from model.musicfm_25hz import MusicFM25Hz
+
+# dummy audio
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
+
+# load MusicFM
 model = MusicFM25Hz()
 
+# to GPUs
 wav = wav.cuda()
 model = model.cuda()
 
+# get embeddings
 emb = model.get_latent(wav, layer_ix=6)
 ```
 
@@ -25,12 +31,18 @@ emb = model.get_latent(wav, layer_ix=6)
 ```
 import torch
 from model.musicfm_25hz import MusicFM25Hz
+
+# dummy audio
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
+
+# load MusicFM
 model = MusicFM25Hz(is_flash=True)
 
+# to GPUs
 wav = wav.cuda().half()
 model = model.cuda().half()
 
+# get embeddings
 emb = model.get_latent(wav, layer_ix=6)
 ```
 
