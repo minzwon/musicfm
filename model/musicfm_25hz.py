@@ -62,7 +62,7 @@ class MusicFM25Hz(nn.Module):
         with open(stat_path, "r") as f:
             self.stat = json.load(f)
 
-        # multiple random quantizers
+        # random quantizer
         self.quantizer_melspec = RandomProjectionQuantizer(n_mels * 4, codebook_dim, codebook_size)  # mel spec
 
         # feature extractor
