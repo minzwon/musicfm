@@ -69,8 +69,31 @@ The pretrained model operates at a 25Hz frame rate, but our downstream tasks dem
 ```
 
 ## Results
+
 <img src="figs/Table1.png" width="800">
 
+\* FM1 is pretrained [MERT](https://arxiv.org/abs/2306.00107). 
+
+\*\*FM8 mirrors the [BEST-RQ](https://arxiv.org/abs/2202.01855) but with the distinction that it was trained using music data.
+
+
+- Random tokenization generalizes well to music data. 
+
+- Token-level classification offers a more comprehensive understanding of foundation models. While FM4 excels in music tagging, its performance in structural analysis is subpar.
+
+- Input length used during training is critical for capturing
+long-term contexts. Check 5s models (FM1, FM2, and FM4) and a 30s model (FM5) in downbeat tracking and structure analysis.
+
+- Temporal resolution has less impact in our experimental setup. See FM5, FM6, and FM7.
+
+- Model architecture makes a significant difference. Conformer (FM5) consistently outperformed BERT encoder (FM3) for across all downstream tasks. 
+
+- The influence of model size was relatively minimal (FM7 and FM8). However, we observed that FM8's performance continued to improve, which is typically indicative of underfitting. All models were trained for two weeks to ensure a fair comparison.
+
+- Data is undeniably crucial, as in any data-driven approach. Please compare FM7 and FM9.
+
+- Fine-tuning the foundation model further enhances downstream performance. However, we did observe a performance
+drop in the tagging task, primarily attributed to overfitting.
 
 ## Masked token modeling
 <img src="figs/Fig1.png" width="300">
