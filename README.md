@@ -133,6 +133,6 @@ Note that input normalization is exceptionally crucial, considering the usage of
     title={A Foundation Model for Music Informatics},
     author = {Won, Minz and Hung, Yun-Ning and Le, Duc},
     journal={arXiv preprint arXiv:2311.03318},
-    year={2013}
+    year={2023}
 }
 ```
