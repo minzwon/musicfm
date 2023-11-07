@@ -69,7 +69,7 @@ The pretrained model operates at a 25Hz frame rate, but our downstream tasks dem
 ```
 
 ## Results
-<img src="figs/Table1.png" width="700">
+<img src="figs/Table1.png" width="800">
 
 
 ## Masked token modeling
