@@ -63,10 +63,24 @@ emb = musicfm.get_latent(wav, layer_ix=6)
 The pretrained model operates at a 25Hz frame rate, but our downstream tasks demand varying temporal resolutions. To address this, we either summarize the sequence through global average pooling or adjust the temporal resolution using adaptive average pooling. 
 
 ```
+from torch import nn
+
 # Sequence-level representation
+seq_emb = emb.mean(-1)
 
 # Token-level representation
+"""
+	n_frame = desired_temporal_resolution * sequence_length_in_sec
+	300 frames = 10Hz * 30s in this example
+	As a result, the sequence length becomes 750 (25Hz * 30s) to 300
+"""
+n_frame = 300 
+token_emb = nn.AdaptiveAvgPool1d(n_frame)(emb)
 ```
+
+You can expect better performance in downstream tasks by fine-tuning the foundation model. In this scenario, employ `musicfm.train()` and extract the final embeddings by setting `layer_ix=12`. However, when optimizing the model with the same learning rate, there's a risk of [catastrophic forgetting](https://en.wikipedia.org/wiki/Catastrophic_interference). To mitigate this issue, we utilized a learning rate of 1e-5 for the foundation model and 1e-4 for the probing layers.
+
+
 
 ## Results
 
