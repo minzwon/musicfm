@@ -1,5 +1,10 @@
+# mac
 .DS_Store
+
+# cache
 *.pyc
+
+# data
 *.json
 *.pt
 
