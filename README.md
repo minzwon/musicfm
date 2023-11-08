@@ -76,7 +76,7 @@ seq_emb = emb.mean(-1)
 n_frame = 300 
 token_emb = nn.AdaptiveAvgPool1d(n_frame)(emb)
 ```
-We share the details of our downstream evaluation as follows.
+We share the details of our downstream evaluation as follows. The selection of input lengths and temporal resolutions is based on our prior experience with each task.
 
 |  | Beat | Chord | Structure | Key | Tagging |
 | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
