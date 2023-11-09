@@ -133,6 +133,8 @@ Note that input normalization is exceptionally crucial, considering the usage of
 - The downstream evaluation pipeline is not provided in this repository. Nonetheless, I believe creating a comprehensive evaluation pipeline is essential to expedite progress in music informatics research. I'm very open to discussing it together.
 
 
+## Acknowledgement
+We acknowledge and extend our sincere gratitude to Ju-Chiang Wang for his valuable contributions to data refinement and providing a crucial codebase for our downstream evaluation.
 
 ## Citation
 ```
