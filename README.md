@@ -81,8 +81,8 @@ We share the details of our downstream evaluation as follows. The selection of i
 |  | Beat | Chord | Structure | Key | Tagging |
 | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
 | Input length | 6s | 12s | 24s | 12s | 29.1s |
-| Temporal resolution | 50Hz | 16Hz | 5Hz | 0.5Hz | - |
-| n_frame | 300 | 192 | 120 | 6 | 1 |
+| Temporal resolution | 50Hz | 16Hz | 8Hz | 0.5Hz | - |
+| n_frame | 300 | 192 | 192 | 6 | 1 |
 
 ### Fine-tuning
 You can expect better performance in downstream tasks by fine-tuning the foundation model. In this scenario, employ `musicfm.train()` and extract the final embeddings by setting `layer_ix=12`. However, when optimizing the model with the same learning rate, there's a risk of [catastrophic forgetting](https://en.wikipedia.org/wiki/Catastrophic_interference). To mitigate this issue, we utilized a learning rate of 1e-5 for the foundation model and 1e-4 for the probing layers.
