@@ -18,11 +18,13 @@ wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob
 
 ### Get embeddings
 ```
+HOME_PATH = "/home/dev" # path where you cloned musicfm
+
 import os
 import sys
-HOME_PATH = "/home/dev" # path where you cloned musicfm
-sys.path.append(HOME_PATH)
 import torch
+
+sys.path.append(HOME_PATH)
 from musicfm.model.musicfm_25hz import MusicFM25Hz
 
 # dummy audio
@@ -48,9 +50,6 @@ emb = musicfm.get_latent(wav, layer_ix=7)
 Suffering from memory issues? [Mixed precision](https://pytorch.org/tutorials/recipes/recipes/amp_recipe.html) and [Flash attention](https://arxiv.org/abs/2205.14135) will be good friends of yours!
 
 ```
-import torch
-from model.musicfm_25hz import MusicFM25Hz
-
 # dummy audio
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
 
