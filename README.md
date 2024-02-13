@@ -10,11 +10,25 @@
 
 ## Quick start
 ### Download models
-```
+- MusicFM-FMA 
+	- Pretrained using [FMA-large](https://github.com/mdeff/fma) data
+	
+	```
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/fma_stats.json
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/pretrained_fma.pt
 ```
-⚠️ The model checkpoint prior to Feb 13, 2024, was incorrect. Please ensure to re-download these files if you've been using previous versions.
+	⚠️ The model checkpoint prior to Feb 13, 2024, was incorrect. Please ensure to re-download these files if you've been using previous versions.
+
+
+- MusicFM-MSD
+	- Pretrained with the entire [Million Song Dataset](http://millionsongdataset.com/)
+	- This version performs better than the FMA version
+	- This version is not introduced in the paper
+
+	```
+wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/msd_stats.json
+wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/pretrained_msd.pt
+	```
 
 ### Get embeddings
 ```
@@ -33,8 +47,8 @@ wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
 # load MusicFM
 musicfm = MusicFM25Hz(
     is_flash=False,
-    stat_path=os.path.join(HOME_PATH, "musicfm", "data", "fma_stats.json"),
-    model_path=os.path.join(HOME_PATH, "musicfm", "data", "pretrained_fma.pt"),
+    stat_path=os.path.join(HOME_PATH, "musicfm", "data", "msd_stats.json"),
+    model_path=os.path.join(HOME_PATH, "musicfm", "data", "pretrained_msd.pt"),
 )
 
 # to GPUs
