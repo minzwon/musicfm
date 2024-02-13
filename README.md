@@ -3,18 +3,18 @@
 [![License](https://img.shields.io/github/license/openshift/source-to-image.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 
-**A Foundation Model for Music Informatics**, submitted to ICASSP 2024 [[paper](https://arxiv.org/abs/2311.03318)]
+**A Foundation Model for Music Informatics**, ICASSP 2024 [[paper](https://arxiv.org/abs/2311.03318)]
 
 -- Minz Won, Yun-Ning Hung, and Duc Le 
 
 
 ## Quick start
 ### Download models
-
 ```
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/fma_stats.json
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/pretrained_fma.pt
 ```
+⚠️ The model checkpoint prior to Feb 13, 2024, was incorrect. Please ensure to re-download these files if you've been using previous versions.
 
 ### Get embeddings
 ```
@@ -66,6 +66,8 @@ musicfm.eval()
 emb = musicfm.get_latent(wav, layer_ix=7)
 ```
 
+However, I highly recommend using `float32` for better performance in specific downstream tasks, such as beat tracking.
+
 ### Usage in downstream tasks
 The pretrained model operates at a 25Hz frame rate, but our downstream tasks demand varying temporal resolutions. To address this, we either summarize the sequence through global average pooling or adjust the temporal resolution using adaptive average pooling. 
 
@@ -75,7 +77,7 @@ from torch import nn
 # Sequence-level representation
 seq_emb = emb.mean(-1)
 
-# Token-level representation
+# Frame-level representation
 """
 	n_frame = desired_temporal_resolution * sequence_length_in_sec
 	300 frames = 10Hz * 30s in this example
@@ -108,7 +110,7 @@ You can expect better performance in downstream tasks by fine-tuning the foundat
 
 - Random tokenization generalizes well to music data. 
 
-- Token-level classification offers a more comprehensive understanding of foundation models. While FM4 excels in music tagging, its performance in structural analysis is subpar.
+- Frame-level classification offers a more comprehensive understanding of foundation models. While FM4 excels in music tagging, its performance in structural analysis is subpar.
 
 - Input length used during training is critical for capturing
 long-term contexts. Check 5s models (FM1, FM2, and FM4) and a 30s model (FM5) in downbeat tracking and structure analysis.
