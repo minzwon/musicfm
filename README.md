@@ -10,25 +10,28 @@
 
 ## Quick start
 ### Download models
-- MusicFM-FMA 
-	- Pretrained using [FMA-large](https://github.com/mdeff/fma) data
+
+**MusicFM-FMA**
+
+- Pretrained using [FMA-large](https://github.com/mdeff/fma) data
 	
-	```
+```
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/fma_stats.json
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/pretrained_fma.pt
 ```
-	⚠️ The model checkpoint prior to Feb 13, 2024, was incorrect. Please ensure to re-download these files if you've been using previous versions.
+⚠️ The model checkpoint prior to Feb 13, 2024, was incorrect. Please ensure to re-download these files if you've been using previous versions.
 
 
-- MusicFM-MSD
-	- Pretrained with the entire [Million Song Dataset](http://millionsongdataset.com/)
-	- This version performs better than the FMA version
-	- This version is not introduced in the paper
+**MusicFM-MSD**
 
-	```
+- Pretrained with the entire [Million Song Dataset](http://millionsongdataset.com/)
+- This version performs better than the FMA version
+- This version is not introduced in the paper
+
+```
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/msd_stats.json
 wget -P YOUR_HOME_PATH/musicfm/data/ https://huggingface.co/minzwon/MusicFM/blob/main/pretrained_msd.pt
-	```
+```
 
 ### Get embeddings
 ```
