@@ -44,7 +44,7 @@ import torch
 sys.path.append(HOME_PATH)
 from musicfm.model.musicfm_25hz import MusicFM25Hz
 
-# dummy audio
+# dummy audio (30 seconds, 24kHz)
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
 
 # load MusicFM
@@ -67,7 +67,7 @@ emb = musicfm.get_latent(wav, layer_ix=7)
 Suffering from memory issues? [Mixed precision](https://pytorch.org/tutorials/recipes/recipes/amp_recipe.html) and [Flash attention](https://arxiv.org/abs/2205.14135) will be good friends of yours!
 
 ```
-# dummy audio
+# dummy audio (30 seconds, 24kHz)
 wav = (torch.rand(4, 24000 * 30) - 0.5) * 2
 
 # load MusicFM
@@ -91,7 +91,7 @@ The pretrained model operates at a 25Hz frame rate, but our downstream tasks dem
 from torch import nn
 
 # Sequence-level representation
-seq_emb = emb.mean(-1)
+seq_emb = emb.mean(-1) # (batch, time, channel) -> (batch, channel)
 
 # Frame-level representation
 """
@@ -100,7 +100,7 @@ seq_emb = emb.mean(-1)
 	As a result, the sequence length becomes from 750 (25Hz * 30s) to 300
 """
 n_frame = 300 
-token_emb = nn.AdaptiveAvgPool1d(n_frame)(emb)
+token_emb = nn.AdaptiveAvgPool1d(n_frame)(emb) # (batch, time, channel) -> (batch, time', channel)
 ```
 We share the details of our downstream evaluation as follows. The selection of input lengths and temporal resolutions is based on our prior experience with each task.
 
